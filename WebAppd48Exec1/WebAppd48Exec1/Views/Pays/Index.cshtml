@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebAppd48Exec1.Models.Pay>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSalary)
+            </th>
+            <th>
+                <h2>PayBand()</h2>
+            </th>
+            <th>
+                <h2>NetSalary</h2>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BasicSalary)
+                </td>
+                <td>
+                    @((@item.BasicSalary*0.10)+(@item.BasicSalary*0.5)+(@item.BasicSalary*0.5))
+                </td>
+                <td>
+                    @(@item.BasicSalary+(@item.BasicSalary * 0.10) + (@item.BasicSalary * 0.5) + (@item.BasicSalary * 0.5))
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PayBand">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PayBand">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PayBand">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
